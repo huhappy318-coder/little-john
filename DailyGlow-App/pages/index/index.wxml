@@ -1,0 +1,47 @@
+<view class="page-container">
+  <!-- 背景图片 -->
+  <image
+    class="background-image {{isFading ? 'fade-animation' : ''}}"
+    src="{{bgImage}}"
+    mode="aspectFill"
+  ></image>
+
+  <!-- 左侧毛玻璃边栏 -->
+  <view class="sidebar">
+    <view class="sidebar-item {{activeComponent === 'archive' ? 'active' : ''}}" bindtap="handleTabClick" data-component="archive">
+      <image src="/assets/ic_tab_archive.png" mode="aspectFit"></image>
+    </view>
+    <view class="sidebar-item {{activeComponent === 'pet' ? 'active' : ''}}" bindtap="handleTabClick" data-component="pet">
+      <image src="/assets/ic_tab_pet.png" mode="aspectFit"></image>
+    </view>
+    <view class="sidebar-item {{activeComponent === 'write' ? 'active' : ''}}" bindtap="handleTabClick" data-component="write">
+      <image src="/assets/ic_tab_write.png" mode="aspectFit"></image>
+    </view>
+  </view>
+
+  <!-- 右下角天气切换按钮 -->
+  <view class="weather-switch-container">
+    <image
+      class="weather-switch-btn"
+      src="/assets/ic_weather_switch.png"
+      mode="aspectFit"
+      bindtap="handleWeatherChange"
+    ></image>
+  </view>
+
+  <!-- 组件容器 -->
+  <comp-archive
+    id="comp-archive"
+    isVisible="{{activeComponent === 'archive'}}"
+    bind:back="handleComponentBack"
+  ></comp-archive>
+  <comp-pet
+    isVisible="{{activeComponent === 'pet'}}"
+    bind:back="handleComponentBack"
+  ></comp-pet>
+  <comp-write
+    isVisible="{{activeComponent === 'write'}}"
+    bind:back="handleComponentBack"
+    bind:switchToArchive="handleSwitchToArchive"
+  ></comp-write>
+</view>

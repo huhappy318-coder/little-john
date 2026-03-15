@@ -1,0 +1,275 @@
+/* components/comp-archive/comp-archive.wxss */
+.calendar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff9e6; /* 淡黄色背景 */
+  z-index: 999;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.calendar-visible {
+  transform: translateX(0);
+}
+
+/* 顶部头部 */
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40rpx;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom: 1rpx solid #eee;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #8b4513; /* 深褐色 */
+}
+
+.back-icon {
+  margin-right: 8rpx;
+}
+
+/* 月份导航 */
+.month-nav {
+  display: flex;
+  align-items: center;
+  gap: 40rpx;
+}
+
+.nav-btn {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffe4b5;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:active {
+  background-color: #ffdab9;
+  transform: scale(0.95);
+}
+
+.nav-icon {
+  font-size: 24rpx;
+  color: #8b4513;
+  font-weight: bold;
+}
+
+.month-text {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #8b4513;
+}
+
+/* 日历内容 */
+.calendar-content {
+  flex: 1;
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+
+/* 星期表头 */
+.week-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 20rpx;
+  padding: 10rpx 0;
+  background-color: #ffe4b5;
+  border-radius: 8rpx;
+}
+
+.week-day {
+  font-size: 24rpx;
+  color: #8b4513;
+  font-weight: bold;
+}
+
+/* 日期网格 */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 2rpx;
+  height: calc(100vh - 200rpx);
+}
+
+.calendar-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 8rpx;
+  margin: 5rpx;
+  position: relative;
+}
+
+.calendar-day.current {
+  color: #8b4513;
+}
+
+.calendar-day.prev,
+.calendar-day.next {
+  color: #cccccc;
+}
+
+.calendar-day.today {
+  background-color: #ff9800;
+  color: white;
+  border-radius: 12rpx;
+}
+
+.calendar-day:active {
+  opacity: 0.8;
+}
+
+.day-number {
+  font-size: 26rpx;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* 记录蓝点 */
+.record-dots {
+  display: flex;
+  justify-content: center;
+  gap: 4rpx;
+  margin-top: 8rpx;
+}
+
+.record-dot {
+  width: 8rpx;
+  height: 8rpx;
+  background-color: #87ceeb;
+  border-radius: 50%;
+}
+
+/* 记录详情弹窗 */
+.record-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.popup-content {
+  position: relative;
+  width: 85vw;
+  max-height: 70vh;
+  background-color: #FFF9F0;
+  border-radius: 24rpx;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 40rpx;
+  background-color: #ffe4b5;
+  border-bottom: 1rpx solid #e0d8c8;
+}
+
+.popup-date {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #5D4037;
+}
+
+.popup-close {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  color: #5D4037;
+  font-weight: bold;
+}
+
+.popup-scroll {
+  flex: 1;
+  max-height: 60vh;
+  padding: 40rpx;
+}
+
+.record-list {
+  height: 100%;
+}
+
+.record-item {
+  margin-bottom: 40rpx;
+}
+
+.record-text {
+  font-size: 30rpx;
+  color: #5D4037;
+  line-height: 1.6;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.record-image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.record-image .record-img {
+  max-width: 100%;
+  max-height: 400rpx;
+  border-radius: 8rpx;
+}
+
+.record-quote {
+  text-align: center;
+}
+
+.record-quote .quote-text {
+  font-size: 28rpx;
+  color: #7FB2E5;
+  line-height: 1.5;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.record-quote .quote-source {
+  font-size: 24rpx;
+  color: #7FB2E5;
+  line-height: 1.5;
+  display: block;
+}
+
+.record-divider {
+  margin: 30rpx 0;
+  border-bottom: 1rpx dashed #E0D8C8;
+}

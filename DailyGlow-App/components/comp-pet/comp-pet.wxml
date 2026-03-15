@@ -1,0 +1,53 @@
+<view class="comp-container {{isVisible ? 'comp-visible' : ''}}">
+  <!-- 全屏背景（背景即宠物） -->
+  <image class="fullscreen-bg" src="{{pets[currentPetIndex].fullBackground}}" mode="aspectFill" bindtap="handlePetInteract"></image>
+
+  <!-- 点击互动提示 -->
+  <view class="interact-hint" wx:if="{{!isAdopted && !hasInteracted}}">点击互动</view>
+
+  <!-- 顶部返回按钮 -->
+  <view class="comp-header">
+    <view class="back-btn" bindtap="handleBack">
+      <text class="back-icon">←</text>
+      <text class="back-text">返回</text>
+    </view>
+  </view>
+
+  <!-- 左右切换箭头 -->
+  <view class="pet-nav {{isAdopted ? 'nav-disabled' : 'nav-enabled'}}">
+    <view class="nav-btn prev-btn" bindtap="handlePrevPet">
+      <text class="nav-icon">←</text>
+    </view>
+    <view class="nav-btn next-btn" bindtap="handleNextPet">
+      <text class="nav-icon">→</text>
+    </view>
+  </view>
+
+  <!-- 宠物气泡（上三分之一处） -->
+  <view class="pet-bubble {{showBubble ? 'bubble-visible' : ''}}">
+    <text class="bubble-text">{{petBubbleText}}</text>
+    <view class="bubble-arrow"></view>
+  </view>
+
+  <!-- 确认领养按钮 -->
+  <view class="adoption-section">
+    <button class="adopt-btn {{isAdopted ? 'btn-disabled' : 'btn-enabled'}}" bindtap="handleAdoptPet" disabled="{{isAdopted}}">{{isAdopted ? '已领养(' + cooldownText + ')' : '确认领养'}}</button>
+    <text class="adoption-hint">{{isAdopted ? '一周内无法更换宠物，敬请谅解' : '选择后一周内无法更换，谨慎操作'}}</text>
+  </view>
+
+  <!-- 领养起名弹窗 -->
+  <view class="naming-modal {{showNamingModal ? 'modal-visible' : ''}}" bindtap="handleNamingCancel">
+    <view class="modal-content" catchtap="stopPropagation">
+      <view class="modal-header">
+        <text class="modal-title">给你的新伙伴起个名字吧</text>
+      </view>
+      <view class="modal-body">
+        <input class="name-input" placeholder="{{pets[currentPetIndex].name}}" value="{{tempName}}" bindinput="handleNameInput" maxlength="10"></input>
+      </view>
+      <view class="modal-footer">
+        <button class="modal-btn cancel-btn" bindtap="handleNamingCancel">取消</button>
+        <button class="modal-btn confirm-btn" bindtap="handleNamingConfirm">确定领养</button>
+      </view>
+    </view>
+  </view>
+</view>

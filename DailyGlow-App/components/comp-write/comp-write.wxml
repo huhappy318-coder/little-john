@@ -1,0 +1,128 @@
+<view class="comp-container {{isVisible ? 'comp-visible' : ''}}">
+  <!-- 顶部返回按钮 -->
+  <view class="comp-header">
+    <view class="back-btn" bindtap="handleBack">
+      <text class="back-icon">←</text>
+      <text class="back-text">返回</text>
+    </view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content">
+    <!-- 杂志卡片 -->
+    <view class="magazine-card {{imgPath ? 'has-image' : 'no-image'}}">
+      <!-- 时间戳 -->
+      <view class="timestamp">{{formattedDate}}</view>
+
+      <!-- 无图片模式 -->
+      <view class="no-image-content" wx:if="{{!imgPath}}">
+        <!-- 用户文本 -->
+        <view class="user-text-center">
+          <textarea class="input-textarea" placeholder="记录今日的闪光时刻..." value="{{inputText}}" bindinput="handleInputChange" maxlength="200"></textarea>
+        </view>
+
+        <!-- 治愈语录 -->
+        <view class="quote-content-center" wx:if="{{showQuote}}">
+          <text class="quote-text">{{quoteText}}</text>
+          <text class="quote-source">{{quoteSource}}</text>
+        </view>
+      </view>
+
+      <!-- 有图片模式 -->
+      <view class="has-image-content" wx:if="{{imgPath}}">
+        <!-- 用户文本 -->
+        <view class="user-text-top">
+          <textarea class="input-textarea" placeholder="记录今日的闪光时刻..." value="{{inputText}}" bindinput="handleInputChange" maxlength="200"></textarea>
+        </view>
+
+        <!-- 核心图片 -->
+        <view class="core-image">
+          <view class="polaroid-frame">
+            <image class="polaroid-img" src="{{imgPath}}" mode="aspectFit"></image>
+            <view class="polaroid-caption">闪光时刻</view>
+          </view>
+        </view>
+
+        <!-- 治愈语录 -->
+        <view class="quote-content-bottom" wx:if="{{showQuote}}">
+          <text class="quote-text">{{quoteText}}</text>
+          <text class="quote-source">{{quoteSource}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 操作区域 -->
+    <view class="actions">
+      <!-- 抽取金句按钮 -->
+      <view class="pet-quote-section">
+        <view class="pet-avatar">
+          <image class="avatar-img" src="{{petAvatar}}" mode="aspectFill"></image>
+        </view>
+        <button class="quote-btn {{isGenerating ? 'btn-disabled' : 'btn-enabled'}}" bindtap="handleExtractQuote" disabled="{{isGenerating}}">
+          {{isGenerating ? '抽取中...' : '抽取今日治愈'}}
+        </button>
+      </view>
+
+      <!-- 图片选择区域 -->
+      <view class="image-section">
+        <button class="choose-btn" bindtap="handleChooseImage" wx:if="{{!imgPath}}">选择照片</button>
+        <button class="clear-btn" bindtap="handleClearImage" wx:if="{{imgPath}}">清除照片</button>
+      </view>
+
+      <!-- 保存到日历按钮 -->
+      <view class="save-calendar-section">
+        <button class="btn-save-calendar" bindtap="saveToCalendar">保存闪光到日历</button>
+      </view>
+
+      <!-- 保存按钮 -->
+      <view class="save-section">
+        <button class="btn-text-export" bindtap="saveAsText">文字闪光</button>
+        <button class="save-btn image-flash-btn {{!imgPath || !showQuote ? 'btn-disabled' : 'btn-enabled'}}" bindtap="handleSaveAsImage">
+          图片闪光
+        </button>
+      </view>
+    </view>
+
+    <!-- Canvas 绘制区域（隐藏） -->
+    <canvas type="2d" id="posterCanvas" style="position:fixed; left:-9999px; width:750px; height:1000px;"></canvas>
+
+    <!-- 海报预览弹窗 -->
+    <view class="poster-overlay {{showPoster ? 'overlay-visible' : ''}}">
+      <view class="poster-container">
+        <view class="close-btn" bindtap="handleClosePoster">×</view>
+
+        <!-- 海报卡片 -->
+        <view class="poster-card {{imgPath ? 'has-image' : 'no-image'}}">
+          <view class="timestamp">{{formattedDate}}</view>
+
+          <!-- 无图片模式 -->
+          <view class="no-image-content" wx:if="{{!imgPath}}">
+            <view class="user-text-center">{{inputText}}</view>
+            <view class="quote-content-center" wx:if="{{showQuote}}">
+              <text class="quote-text">{{quoteText}}</text>
+              <text class="quote-source">{{quoteSource}}</text>
+            </view>
+          </view>
+
+          <!-- 有图片模式 -->
+          <view class="has-image-content" wx:if="{{imgPath}}">
+            <view class="user-text-top">{{inputText}}</view>
+            <view class="core-image">
+              <image src="{{imgPath}}" mode="aspectFit"></image>
+            </view>
+            <view class="quote-content-bottom" wx:if="{{showQuote}}">
+              <text class="quote-text">{{quoteText}}</text>
+              <text class="quote-source">{{quoteSource}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 底部操作按钮 -->
+        <view class="poster-actions">
+          <button class="action-btn secondary" bindtap="handleEditAgain">再改改</button>
+          <button class="action-btn primary" bindtap="handleSaveToAlbum">确认保存到相册</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

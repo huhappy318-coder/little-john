@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "comp-archive": "/components/comp-archive/comp-archive",
+    "comp-pet": "/components/comp-pet/comp-pet",
+    "comp-write": "/components/comp-write/comp-write"
+  }
+}

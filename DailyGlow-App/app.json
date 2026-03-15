@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundColor": "#f6f6f6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "每天都闪光",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "default"
+  },
+  "usingComponents": {
+    "comp-archive": "/components/comp-archive/comp-archive",
+    "comp-pet": "/components/comp-pet/comp-pet",
+    "comp-write": "/components/comp-write/comp-write"
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

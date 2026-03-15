@@ -1,0 +1,320 @@
+/* components/comp-pet/comp-pet.wxss */
+.comp-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #FFF9F0;
+  z-index: 999;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.comp-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 全屏背景 */
+.fullscreen-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+/* 顶部返回按钮 */
+.comp-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 40rpx 0;
+  padding-left: 40rpx;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-bottom: 1rpx solid #eee;
+  z-index: 10;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  font-size: 32rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.back-icon {
+  font-size: 48rpx;
+  line-height: 1;
+}
+
+/* 左右切换按钮 */
+.pet-nav {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  width: 700rpx;
+  z-index: 6;
+}
+
+.nav-disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.nav-enabled {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-btn {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.nav-btn:active {
+  transform: scale(0.92);
+}
+
+.nav-icon {
+  font-size: 48rpx;
+  color: #333;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* 宠物气泡（上三分之一处） */
+.pet-bubble {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 20rpx 30rpx;
+  background-color: white;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translate(-50%, -20rpx);
+  transition: all 0.3s ease;
+  z-index: 10;
+  max-width: 400rpx;
+}
+
+.bubble-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.bubble-text {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.bubble-arrow {
+  position: absolute;
+  bottom: -16rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 16rpx solid transparent;
+  border-right: 16rpx solid transparent;
+  border-top: 16rpx solid white;
+}
+
+/* 点击互动提示 */
+.interact-hint {
+  position: absolute;
+  top: 15%;
+  right: 10%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 15rpx 20rpx;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+  z-index: 8;
+  animation: floatAnimation 2s ease-in-out infinite;
+}
+
+/* 浮动动画 */
+@keyframes floatAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10rpx);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* 确认领养按钮 */
+.adoption-section {
+  position: absolute;
+  bottom: 100rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+  width: 80%;
+}
+
+.adopt-btn {
+  width: 100%;
+  padding: 24rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-radius: 16rpx;
+  background: #ffd700;
+  color: #333;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.btn-disabled {
+  background: #ccc;
+  color: #666;
+  border: 1px solid #ddd;
+  pointer-events: none;
+}
+
+.btn-enabled:active {
+  background: #ffc700;
+  transform: scale(0.98);
+}
+
+.adoption-hint {
+  display: block;
+  margin-top: 40rpx;
+  font-size: 24rpx;
+  color: #888888;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* 领养起名弹窗 */
+.naming-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  width: 600rpx;
+  background-color: #FFF9F0;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.2);
+  border: 2rpx solid #333;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.modal-visible .modal-content {
+  transform: scale(1);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.modal-title {
+  font-size: 36rpx;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+}
+
+.modal-body {
+  margin-bottom: 30rpx;
+}
+
+.name-input {
+  width: 100%;
+  padding: 20rpx;
+  font-size: 32rpx;
+  border: 2rpx solid #333;
+  border-radius: 12rpx;
+  background-color: white;
+  text-align: center;
+  color: #333;
+}
+
+.name-input:focus {
+  border-color: #ffd700;
+  outline: none;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 20rpx;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 20rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-radius: 12rpx;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn {
+  background-color: #eee;
+  color: #666;
+  border: 2rpx solid #ddd;
+}
+
+.cancel-btn:active {
+  background-color: #ddd;
+  transform: scale(0.98);
+}
+
+.confirm-btn {
+  background-color: #ffd700;
+  color: #333;
+  border: 2rpx solid #ffc700;
+}
+
+.confirm-btn:active {
+  background-color: #ffc700;
+  transform: scale(0.98);
+}
